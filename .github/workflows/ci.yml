@@ -25,13 +25,13 @@ jobs:
           cd $GITHUB_WORKSPACE
           PR_STATUS=$(gh pr status)
           if [[ "$PR_STATUS" == *"${{github.ref_name}}"* ]]; then
-            echo ::set-output name=exists::true;
+            echo "PR_EXISTS=true" >> $GITHUB_ENV;
           else
-            echo ::set-output name=exists::false;
+            echo "PR_EXISTS=false" >> $GITHUB_ENV;
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - if: ${{steps.check-pr.exists}} == false
+      - if: ${{env.PR_EXISTS}} == false
         name: Create Pull Request
         run: |
           cd $GITHUB_WORKSPACE
