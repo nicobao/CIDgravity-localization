@@ -1,5 +1,9 @@
 name: Create Weblate PR
 on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Test pr creation locally"
   push:
     branches:
       - feat-weblate-cidgravity-*
@@ -13,15 +17,12 @@ jobs:
         with:
           script: |
             const targetBranch = context.ref.split('-')[3]
+            console.log(targetBranch, context.ref)
             core.setOutput('targetBranch', targetBranch)
-      - uses: actions/checkout@v3
-        with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          base: ${{steps.get-target-branch.outputs.targetBranch}}
-          title: Update Translations from Weblate
-          body: Update translations from Weblate. PR automatically created by CI on branch push.
-          branch: ${{github.ref_name}}
-          draft: true
+        run: |
+          pwd
+          ls -lArt
+          gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
