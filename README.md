@@ -7,6 +7,7 @@ This repository contains the i18next JSON localization files for the [CIDgravity
 The actual translation work happens at https://localization.cidgravity.com through our Weblate instance.
 
 Weblate will locally commit to a feature branch every minute, then an administrator will manually push and this repository CI will trigger a pull request.
+Test
 
 ## How to contribute as a developer
 
