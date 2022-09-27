@@ -23,15 +23,14 @@ jobs:
       - name: Create Pull Request
         run: |
           cd $GITHUB_WORKSPACE
-          PR_CREATION_RESULT=$(gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.')
+          PR_CREATION_RESULT=$(unbuffer gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.')
           if [[ $PR_CREATION_RESULT == *"already exists"* ]]; then
-            exit 0
+            exit 0;
           fi
           if [[ $PR_CREATION_RESULT == "" ]]; then
-            exit 0
+            exit 0;
           fi
           echo $PR_CREATION_RESULT
-          exit 1
+          exit 1;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
