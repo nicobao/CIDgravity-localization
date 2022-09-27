@@ -12,7 +12,8 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const targetBranch = github.ref_name.split('-')[3]
+            console.log(context)
+            const targetBranch = context.ref.split('-')[3]
             core.setOutput('targetBranch', targetBranch)
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
@@ -20,4 +21,4 @@ jobs:
           base: ${{steps.get-target-branch.outputs.targetBranch}}
           title: Update Translations from Weblate
           body: Update translations from Weblate. PR automatically created by CI on branch push.
-          branch: ${{github.ref_name}}
+e         branch: ${{github.ref_name}}
