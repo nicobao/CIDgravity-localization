@@ -22,12 +22,15 @@ jobs:
       - name: Check if PR already exist
         id: check-pr
         run: |
+          cd $GITHUB_WORKSPACE
           PR_STATUS=$(gh pr status)
           if [[ "$PR_STATUS" == *"${{github.ref_name}}"* ]]; then
             echo ::set-output name=exists::true;
           else
             echo ::set-output name=exists::false;
           fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: steps.check-pr.exists == false
         name: Create Pull Request
         run: |
