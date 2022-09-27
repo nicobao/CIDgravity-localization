@@ -21,8 +21,11 @@ jobs:
       - name: Create Pull Request
         run: |
           cd $GITHUB_WORKSPACE
-          trap "gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.'" EXIT
-          exit_code=$?
-          exit 0;
+          cleanup() {
+            exit_code=$?
+            gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.'
+            exit 0
+          }
+          trap cleanup EXIT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
