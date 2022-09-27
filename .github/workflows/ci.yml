@@ -1,5 +1,9 @@
 name: Create Weblate PR
 on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Test pr creation locally"
   push:
     branches:
       - feat-weblate-cidgravity-*
