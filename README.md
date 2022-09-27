@@ -2,6 +2,7 @@
 
 This repository contains the i18next JSON localization files for the [CIDgravity application](https://app.cidgravity.com).
 
+new
 ## How to contribute as a translator
 
 The actual translation work happens at https://localization.cidgravity.com through our Weblate instance.
