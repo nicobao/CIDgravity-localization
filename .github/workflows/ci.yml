@@ -18,7 +18,7 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
         with:
-          ref: steps.get-target-branch.outputs.targetBranch
+          ref: ${{steps.get-target-branch.outputs.targetBranch}}
       - name: Create Pull Request
         run: |
           cd $GITHUB_WORKSPACE
