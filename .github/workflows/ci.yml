@@ -20,16 +20,8 @@ jobs:
           ref: ${{github.ref_name}}
       - name: Create Pull Request
         run: |
-          sudo apt-get install expect
           cd $GITHUB_WORKSPACE
-          PR_CREATION_RESULT=$(unbuffer gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.')
-          if [[ $PR_CREATION_RESULT == *"already exists"* ]]; then
-            exit 0;
-          fi
-          if [[ $PR_CREATION_RESULT == "" ]]; then
-            exit 0;
-          fi
-          echo $PR_CREATION_RESULT
-          exit 1;
+          gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.'
+          exit 0;
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
