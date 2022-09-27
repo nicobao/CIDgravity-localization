@@ -13,6 +13,7 @@ jobs:
         with:
           script: |
             const targetBranch = context.ref.split('-')[3]
+            console.log(targetBranch, context.ref)
             core.setOutput('targetBranch', targetBranch)
       - uses: actions/checkout@v3
         with:
@@ -21,7 +22,7 @@ jobs:
         uses: peter-evans/create-pull-request@v4
         with:
           base: ${{steps.get-target-branch.outputs.targetBranch}}
-          title: Update Translations from Weblate
+          title: Update Translations from Weblate - ${{steps.get-target-branch.outputs.targetBranch}}
           body: Update translations from Weblate. PR automatically created by CI on branch push.
           branch: ${{github.ref_name}}
           draft: true
