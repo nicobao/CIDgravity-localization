@@ -31,9 +31,10 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - if: ${{env.PR_EXISTS}} == false
+      - if: ${{ env.PR_EXISTS }} == false
         name: Create Pull Request
         run: |
+          echo $PR_EXISTS
           cd $GITHUB_WORKSPACE
           gh pr create -d -B ${{steps.get-target-branch.outputs.targetBranch}} -H ${{github.ref_name}} --title 'Update Translations from Weblate' --body 'Update translations from Weblate. PR automatically created by CI on branch push.'
         env:
