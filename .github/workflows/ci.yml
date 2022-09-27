@@ -31,7 +31,7 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - if: ${{ env.PR_EXISTS }} == false
+      - if: env.PR_EXISTS == 'false'
         name: Create Pull Request
         run: |
           echo $PR_EXISTS
