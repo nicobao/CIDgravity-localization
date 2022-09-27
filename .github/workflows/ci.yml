@@ -29,6 +29,7 @@ jobs:
           else
             echo "PR_EXISTS=false" >> $GITHUB_ENV;
           fi
+          echo $PR_STATUS
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - if: env.PR_EXISTS == 'false'
