@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/nicobao/CIDgravity-localization/compare/v1.0.0...v1.0.1) (2022-10-11)
+
+
+### Bug Fixes
+
+* test change ([a695652](https://github.com/nicobao/CIDgravity-localization/commit/a6956523c5b63a9bdaae6900a26e4a8522c73af4))
+
 # 1.0.0 (2022-10-11)
 
 
