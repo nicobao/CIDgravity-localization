@@ -43,3 +43,9 @@ WantedBy=multi-user.target
 ```
 
 and finally `sudo systemctl start reload-cidgravity-locales.service`
+
+## Create en-US .json from .dev
+
+Run:
+
+- `npm run create-en-US-from-dev`

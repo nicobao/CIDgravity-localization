@@ -1,5 +1,5 @@
 {
-    "name": "@cidgravity/cidgravity-locales",
+    "name": "@nicobao/cidgravity-locales",
     "version": "1.0.0",
     "description": "i18next JSON localization files for https://app.cidgravity.com",
     "main": "index.js",
@@ -13,6 +13,7 @@
         "format:write": "prettier --write .",
         "check-json-validity": "node ../build/checkJSONValidity.js ./locales",
         "check-dev-en-US-match": "node ../build/checkDevEnUSMatch.js ./locales",
+        "create-en-US-from-dev": "node ../build/createEnUsFromDev.js ./locales/",
         "test": "npm run format:check ; npm run check-json-validity ; npm run check-dev-en-US-match",
         "republish-locally": "npm unpublish --registry http://localhost:4873 @cidgravity/cidgravity-locales --force ; npm publish --registry http://localhost:4873"
     },
