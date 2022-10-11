@@ -2,6 +2,7 @@
 
 This directory contains locales for https://app.cidgravity.com project.
 
+
 ## Testing locally
 
 -   Clone this repo
